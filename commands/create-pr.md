@@ -1,9 +1,10 @@
 ---
-allowed-tools: [bash, git, gh, Read, Grep, Glob]
-argument-hint: "[PR Title] [Base Branch (optional)] [Additional gh pr create options]"
-description: GitHub上でドラフトプルリクエストを作成
+allowed-tools: [Bash, Read, Glob, Grep]
+argument-hint: <title> [base-branch]
+description: Create a draft PR following the .github/PULL_REQUEST_TEMPLATE.md template
 model: claude-3-5-haiku-20241022
 ---
+
 # create-pr
 
 ## 目的
@@ -46,8 +47,6 @@ GitHub上でドラフトプルリクエストを作成し、.github/PULL_REQUEST
 現在のブランチとコミット情報を確認し、PRテンプレートに従ってドラフトプルリクエストを作成します。
 
 ```bash
-#!/bin/bash
-
 # 現在のブランチを確認
 current_branch=$(git branch --show-current)
 base_branch=${2:-main}
@@ -74,14 +73,9 @@ fi
 # コミット情報の取得
 recent_commits=$(git log --oneline -5 ${base_branch}..HEAD)
 
-# 追加のgh pr create オプションを抽出
-shift 2
-additional_options="$@"
-
 # PRの作成
 gh pr create --draft \
     --title "$1" \
-    --base "$base_branch" \
     --body "$(cat <<EOF
 $template_content
 
@@ -92,5 +86,5 @@ $recent_commits
 
 🤖 Generated with [Claude Code](https://claude.ai/code)
 EOF
-)" $additional_options
+)"
 ```
