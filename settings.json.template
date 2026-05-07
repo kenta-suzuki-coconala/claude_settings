@@ -1,0 +1,70 @@
+{
+  "env": {
+    "SLACK_WEBHOOK_URL": "REPLACE_WITH_SLACK_WEBHOOK_URL",
+    "NOTION_API_TOKEN": "REPLACE_WITH_NOTION_API_TOKEN",
+    "SLACK_USER_TOKEN": "REPLACE_WITH_SLACK_USER_TOKEN",
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Edit",
+      "Write",
+      "Bash(*)"
+    ],
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/cmux-notify.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash ${CLAUDE_CONFIG_DIR:-$HOME/.claude}/statusline.sh"
+  },
+  "enabledPlugins": {
+    "using-cmux@hummer98-using-cmux": true,
+    "cmux-team@hummer98-cmux-team": true,
+    "genshijin@genshijin": true,
+    "oh-my-claudecode@omc": true
+  },
+  "extraKnownMarketplaces": {
+    "hummer98-using-cmux": {
+      "source": {
+        "source": "github",
+        "repo": "hummer98/using-cmux"
+      }
+    },
+    "hummer98-cmux-team": {
+      "source": {
+        "source": "github",
+        "repo": "hummer98/cmux-team"
+      }
+    },
+    "genshijin": {
+      "source": {
+        "source": "github",
+        "repo": "InterfaceX-co-jp/genshijin"
+      }
+    },
+    "omc": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/Yeachan-Heo/oh-my-claudecode.git"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
+  "remoteControlAtStartup": false
+}
