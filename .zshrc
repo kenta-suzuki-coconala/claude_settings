@@ -115,7 +115,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 . "$HOME/.local/bin/env"
 NOTION_API_KEY=your-notion-api-key
-NOTION_API_KEY=ntn_l923177488422VnOdsZSE43WGcRApvT8Cc4Y7PYs7ng7O7
 
 # Added by Antigravity
 export PATH="/Users/kenta.suzuki/.antigravity/antigravity/bin:$PATH"
